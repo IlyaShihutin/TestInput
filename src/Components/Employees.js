@@ -7,13 +7,17 @@ const Employees = ({ page = "12" }) => {
   const [error, setError] = useState(false);
   const [loader, setLoader] = useState(true);
 
-  useEffect(async () => {
+  async function fetchProduct() {
     setLoader(false);
     const result = await getStaff(page);
     if (result) {
       setStaff(result.data);
       setLoader(true);
     }
+  }
+
+  useEffect(() => {
+    fetchProduct();
   }, [])
 
   const changeInput = (e) => {
